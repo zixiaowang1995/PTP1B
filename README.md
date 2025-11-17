@@ -9,7 +9,6 @@ If you find this project useful, please cite our paper:
 Wang ZX, Sun LL, Anqi Ren, Fang Yang, Chang Yu. A Transfer Learning Framework for PTP1B Inhibitor Activity Prediction: Differential Modeling of Natural and Non-Natural Products with Web Platform Implementation. Molecular Diversity. 2025
 # Core Concepts
 
-Copilot said: This project provides a flexible framework for
 This project provides a flexible framework for building predictive models of PTP1B inhibitors, leveraging molecular fingerprints, molecular graphs, or SMILES as input features. The framework supports various deep learning architectures—including MLPs, AFP, and transformers—for modeling both natural and non-natural inhibitor datasets. Additionally, users can implement transfer learning between datasets as needed (for example, pretraining on non-natural inhibitors and fine-tuning on natural product data) based on this framework.
 
 # Data Collection

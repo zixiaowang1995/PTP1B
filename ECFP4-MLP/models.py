@@ -23,7 +23,7 @@ class SMILESFeatureExtractor(nn.Module):
         self.fc1 = nn.Linear(output_dim, 64)
         self.fc2 = nn.Linear(64, 1)
         self.sig = nn.Sigmoid()
-        self.pool = Global_Attention(output_dim)  # 使用参数而非硬编码
+        self.pool = Global_Attention(output_dim)  
         self.to(device)
 
     def forward(self, smiles_list):
@@ -38,16 +38,16 @@ class SMILESFeatureExtractor(nn.Module):
         attention_mask = encoded['attention_mask'].to(self.model.device)
 
         outputs = self.model(input_ids=input_ids, attention_mask=attention_mask, return_dict=True)
-        # 简化CLS token提取
+
         cls_token_embedding = outputs.last_hidden_state[:, 0, :] if hasattr(outputs, 'last_hidden_state') else outputs[0][:, 0, :]
         
         transformed_output = self.linear(cls_token_embedding)
-        transformed_output = self.pool(transformed_output)  # batch_size不需要
+        transformed_output = self.pool(transformed_output) 
         out = self.fc1(transformed_output)
         out = F.relu(out)
         out = self.fc2(out)
         out = self.sig(out)
-        # 确保输出维度正确，避免squeeze后维度不匹配
+
         return out.view(-1, 1)
 
 
